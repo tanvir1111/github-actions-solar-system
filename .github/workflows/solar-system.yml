@@ -101,10 +101,12 @@ jobs:
           uses: azure/setup-kubectl@v4
           with:
             version: v1.28.1
+        - run: 'echo ${{secrets.KUBECONFIG}}'
+
         - uses: azure/k8s-set-context@v3
           with:
               method: kubeconfig
-              kubeconfig: '${{ secrets.KUBECONFIG }}'
+              kubeconfig: ${{ secrets.KUBECONFIG }}
         - run: kubectl version -o yaml
 
 
