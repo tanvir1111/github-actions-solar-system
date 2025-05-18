@@ -123,6 +123,11 @@ jobs:
               }}
             INGRESS_IP: '${{ env.INGRESS_IP }}'
         - run: cat kubernetes/development/*.yaml
+    integration-testing:
+      needs: dev-deploy
+      uses: ./.github/workflows/reusable-workflow.yml
+      with:
+        ingress-url: ${{needs.dev-deploy.outputs.INGRESS_IP}}
 
 
 
